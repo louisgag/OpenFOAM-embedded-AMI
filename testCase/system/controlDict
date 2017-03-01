@@ -1,0 +1,189 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.2                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "../include.dat"  // data from gmsh, should be updated for each new geometry using cropDomain.geo printouts
+
+libs ("libmyFiniteVolume.so"  "libmyDynamicFvMesh.so");
+
+
+application     pimpleDyMFoam;
+
+startFrom       latestTime;
+//startFrom       startTime;
+
+startTime       0;
+
+stopAt		endTime;
+
+endTime         3;
+
+deltaT          1e-9;
+
+writeControl    adjustableRunTime;
+//writeControl    timeStep;
+
+writeInterval    0.1; // 0.01;
+//writeInterval   1;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  16; // increased from 6 to 16 to have a proper gmshToFoam precision (ie no loss of info btwn both)
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+adjustTimeStep  yes;
+
+maxCo           5;//0.2;
+
+functions
+(
+/*
+forces_foil1
+{
+type forces;
+functionObjectLibs ("libforces.so"); //Lib to load -> dylib on Mac and so on Linux
+	outputControl timeStep;
+//    outputControl outputTime;
+    outputInterval 1;
+patches (foil1); //Name of patch to integrate forces
+pName       p;
+UName       U;
+rhoName     rhoInf;      // Indicates incompressible (disable if compressible)
+rhoInf 1.204; //Reference density for fluid - can be changed later ...
+CofR          (3.048 3.048 -0.005); //Origin for moment calculations (CenterofRotation) Attention using center of rotor because of non-constant airfoil CoR
+log false;	// activate or deactive output to screen
+} 
+*/
+
+forces_foil1
+{
+type forces;
+functionObjectLibs ("libforces.so");
+outputControl timeStep;
+outputInterval 1;
+patches (foil1);
+pName p;
+Uname U;
+rhoName rhoInf;
+rhoInf 1.204;
+CofR ($oxR $oyR -0.005);
+log false;
+}
+forces_foil2
+{
+type forces;
+functionObjectLibs ("libforces.so");
+outputControl timeStep;
+outputInterval 1;
+patches (foil2);
+pName p;
+Uname U;
+rhoName rhoInf;
+rhoInf 1.204;
+CofR ($oxR $oyR -0.005);
+log false;
+}
+forces_foil3
+{
+type forces;
+functionObjectLibs ("libforces.so");
+outputControl timeStep;
+outputInterval 1;
+patches (foil3);
+pName p;
+Uname U;
+rhoName rhoInf;
+rhoInf 1.204;
+CofR ($oxR $oyR -0.005);
+log false;
+}
+forces_foil4
+{
+type forces;
+functionObjectLibs ("libforces.so");
+outputControl timeStep;
+outputInterval 1;
+patches (foil4);
+pName p;
+Uname U;
+rhoName rhoInf;
+rhoInf 1.204;
+CofR ($oxR $oyR -0.005);
+log false;
+}
+forces_foil5
+{
+type forces;
+functionObjectLibs ("libforces.so");
+outputControl timeStep;
+outputInterval 1;
+patches (foil5);
+pName p;
+Uname U;
+rhoName rhoInf;
+rhoInf 1.204;
+CofR ($oxR $oyR -0.005);
+log false;
+}
+forces_foil6
+{
+type forces;
+functionObjectLibs ("libforces.so");
+outputControl timeStep;
+outputInterval 1;
+patches (foil6);
+pName p;
+Uname U;
+rhoName rhoInf;
+rhoInf 1.204;
+CofR ($oxR $oyR -0.005);
+log false;
+}
+
+
+
+fieldMinMax2
+    {
+        type        fieldMinMax;
+        functionObjectLibs ("libfieldFunctionObjects.so");
+	outputControl timeStep;
+    	outputInterval 1;
+        write       no;
+        log         yes;
+        mode        magnitude;
+        fields
+        (
+            U
+            p
+		rAu
+		phi
+        );
+    }
+
+
+
+);
+
+// ************************************************************************* //

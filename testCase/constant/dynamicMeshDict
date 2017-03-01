@@ -1,0 +1,143 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.2                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "../include.dat"  // data from gmsh, should be updated for each new geometry using cropDomain.geo printouts
+
+dynamicFvMesh   multiSolidBodyMotionFvMesh;
+
+motionSolverLibs ( "libfvMotionSolvers.so" );
+
+multiSolidBodyMotionFvMeshCoeffs   // for multi rotation zones see multiSolidBodyMotionFvMesh
+{
+//    cellZone        rotorLouis;
+
+
+    rotorLouis  // main rotor
+    {
+        solidBodyMotionFunction  rotatingMotion;
+        rotatingMotionCoeffs
+        {
+		origin        ($oxR $oyR 0);
+		axis          (0 0 1);
+		omega         41.888;//41.888; // rad/s 
+	}
+    }
+
+foil1Zone
+{
+solidBodyMotionFunction myOscillatingRotatingMotion;
+myOscillatingRotatingMotionCoeffs
+{
+origin ($oxF1 $oyF1 0);
+amplitude (0 0 $magI); // degs
+omega 41.888; // rad/s
+initialOffset $offIF1; // offset of foil oscillation at t=0, multiple of pi, in rad
+
+outterOrigin ($oxR $oyR 0);
+outterOmega 41.888;
+outterRadius $radR;
+outterInitialOffset $offOF1;
+}
+}
+foil2Zone
+{
+solidBodyMotionFunction myOscillatingRotatingMotion;
+myOscillatingRotatingMotionCoeffs
+{
+origin ($oxF2 $oyF2 0);
+amplitude (0 0 $magI); // degs
+omega 41.888; // rad/s
+initialOffset $offIF2; // offset of foil oscillation at t=0, multiple of pi, in rad
+
+outterOrigin ($oxR $oyR 0);
+outterOmega 41.888;
+outterRadius $radR;
+outterInitialOffset $offOF2;
+}
+}
+foil3Zone
+{
+solidBodyMotionFunction myOscillatingRotatingMotion;
+myOscillatingRotatingMotionCoeffs
+{
+origin ($oxF3 $oyF3 0);
+amplitude (0 0 $magI); // degs
+omega 41.888; // rad/s
+initialOffset $offIF3; // offset of foil oscillation at t=0, multiple of pi, in rad
+
+outterOrigin ($oxR $oyR 0);
+outterOmega 41.888;
+outterRadius $radR;
+outterInitialOffset $offOF3;
+}
+}
+foil4Zone
+{
+solidBodyMotionFunction myOscillatingRotatingMotion;
+myOscillatingRotatingMotionCoeffs
+{
+origin ($oxF4 $oyF4 0);
+amplitude (0 0 $magI); // degs
+omega 41.888; // rad/s
+initialOffset $offIF4; // offset of foil oscillation at t=0, multiple of pi, in rad
+
+outterOrigin ($oxR $oyR 0);
+outterOmega 41.888;
+outterRadius $radR;
+outterInitialOffset $offOF4;
+}
+}
+foil5Zone
+{
+solidBodyMotionFunction myOscillatingRotatingMotion;
+myOscillatingRotatingMotionCoeffs
+{
+origin ($oxF5 $oyF5 0);
+amplitude (0 0 $magI); // degs
+omega 41.888; // rad/s
+initialOffset $offIF5; // offset of foil oscillation at t=0, multiple of pi, in rad
+
+outterOrigin ($oxR $oyR 0);
+outterOmega 41.888;
+outterRadius $radR;
+outterInitialOffset $offOF5;
+}
+}
+foil6Zone
+{
+solidBodyMotionFunction myOscillatingRotatingMotion;
+myOscillatingRotatingMotionCoeffs
+{
+origin ($oxF6 $oyF6 0);
+amplitude (0 0 $magI); // degs
+omega 41.888; // rad/s
+initialOffset $offIF6; // offset of foil oscillation at t=0, multiple of pi, in rad
+
+outterOrigin ($oxR $oyR 0);
+outterOmega 41.888;
+outterRadius $radR;
+outterInitialOffset $offOF6;
+}
+}
+
+}
+
+
+
+
+
+// ************************************************************************* //

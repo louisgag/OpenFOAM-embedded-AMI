@@ -1,0 +1,239 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       polyBoundaryMesh;
+    location    "1e-09/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+27
+(
+    frontAndBack
+    {
+        type            empty;
+        physicalType    patch;
+        nFaces          175310;
+        startFace       130126;
+    }
+    f1InnerInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f1OutterInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       305436;
+    }
+    foil1
+ {
+ type wall;
+        physicalType    patch;
+        nFaces          120;
+        startFace       305588;
+    }
+    rotorInnerInterface
+    {
+        type            cyclicAMI;
+ matchTolerance  0.0001;
+	neighbourPatch  rotorOutterInterface;
+  transform       noOrdering;
+        nFaces          52;
+        startFace       305708;
+    }
+    f1OutterInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f1InnerInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       305760;
+    }
+    f2OutterInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f2InnerInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       305912;
+    }
+    f3OutterInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f3InnerInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       306064;
+    }
+    f4OutterInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f4InnerInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       306216;
+    }
+    f5OutterInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f5InnerInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       306368;
+    }
+    f6OutterInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f6InnerInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       306520;
+    }
+    f2InnerInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f2OutterInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       306672;
+    }
+    foil2
+ {
+ type wall;
+        physicalType    patch;
+        nFaces          120;
+        startFace       306824;
+    }
+    f3InnerInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f3OutterInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       306944;
+    }
+    foil3
+ {
+ type wall;
+        physicalType    patch;
+        nFaces          120;
+        startFace       307096;
+    }
+    f4InnerInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f4OutterInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       307216;
+    }
+    foil4
+ {
+ type wall;
+        physicalType    patch;
+        nFaces          120;
+        startFace       307368;
+    }
+    f5InnerInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f5OutterInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       307488;
+    }
+    foil5
+ {
+ type wall;
+        physicalType    patch;
+        nFaces          120;
+        startFace       307640;
+    }
+    f6InnerInterface
+ {
+ type cyclicAMI;
+ matchTolerance 0.0001;
+ neighbourPatch f6OutterInterface;
+ transform noOrdering;
+        nFaces          152;
+        startFace       307760;
+    }
+    foil6
+ {
+ type wall;
+        physicalType    patch;
+        nFaces          120;
+        startFace       307912;
+    }
+    cosmosOutletL
+    {
+        type            patch;
+        physicalType    patch;
+        nFaces          8;
+        startFace       308032;
+    }
+    cosmosOutletC
+    {
+        type            patch;
+        physicalType    patch;
+        nFaces          1;
+        startFace       308040;
+    }
+    cosmosOutletR
+    {
+        type            patch;
+        physicalType    patch;
+        nFaces          8;
+        startFace       308041;
+    }
+    cosmosRight
+    {
+        type            patch;
+        physicalType    patch;
+        nFaces          16;
+        startFace       308049;
+    }
+    cosmosInlet
+    {
+        type            patch;
+        physicalType    patch;
+        nFaces          16;
+        startFace       308065;
+    }
+    cosmosLeft
+    {
+        type            patch;
+        physicalType    patch;
+        nFaces          16;
+        startFace       308081;
+    }
+    rotorOutterInterface
+    {
+        type            cyclicAMI;
+ matchTolerance  0.0001;
+	neighbourPatch rotorInnerInterface;
+ transform       noOrdering;
+        nFaces          52;
+        startFace       308097;
+    }
+)
+
+// ************************************************************************* //

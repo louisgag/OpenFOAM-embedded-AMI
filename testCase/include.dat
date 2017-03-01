@@ -1,0 +1,44 @@
+oxR  16; // origin of rotor
+oyR  16; // origin of rotor
+radRz  0.8; // radius of rotor AMI/GGI zone
+radR  0.5; // radius of rotor (ie of foil and their AMI zones centers)
+radFz  0.2375; // radius of foil GGI zone
+magI  -20; // half magnitude of pitch function 
+boxFx1  15.5; // box dims for setFields 
+boxFy1  0; // box dims for setFields 
+boxFx2  16.5; // box dims for setFields 
+boxFy2  15.5; // box dims for setFields 
+inVelR  0.00276979; // ratio of input to output velocities 
+inVel_p  0.0504378; // positive input velocity 
+inVel_n  -0.0504378; // negative input velocity 
+outVel_n  -18.21; // negative output velocity 
+oxF1 16;
+oyF1 16.5;
+offIF1 0.5;
+offOF1 0.5;
+angOff1 -20;
+oxF2 15.567;
+oyF2 16.25;
+offIF2 0.833333;
+offOF2 0.833333;
+angOff2 -10;
+oxF3 15.567;
+oyF3 15.75;
+offIF3 1.16667;
+offOF3 1.16667;
+angOff3 10;
+oxF4 16;
+oyF4 15.5;
+offIF4 1.5;
+offOF4 1.5;
+angOff4 20;
+oxF5 16.433;
+oyF5 15.75;
+offIF5 1.83333;
+offOF5 1.83333;
+angOff5 10;
+oxF6 16.433;
+oyF6 16.25;
+offIF6 2.16667;
+offOF6 2.16667;
+angOff6 -10;

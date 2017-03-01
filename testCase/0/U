@@ -1,0 +1,69 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.2                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "../include.dat"  // data from gmsh, should be updated for each new geometry using cropDomain.geo printouts
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+	frontAndBack
+    {
+        type            empty;
+    }
+    ".*Interface"
+    {
+        type            cyclicAMI;
+    }
+    "foil.*"
+    {
+        type            myMovingWallSlip;
+        value           uniform (0 0 0);
+    }
+    cosmosOutletL
+    {
+        type            fixedValue;
+        value           uniform (0 $inVel_p 0);
+    }
+    cosmosOutletC
+    {
+        type            zeroGradient;
+    }
+    cosmosOutletR
+    {
+        type            fixedValue;
+        value           uniform (0 $inVel_p 0);
+    }
+    cosmosRight
+    {
+        type            fixedValue;
+        value           uniform ($inVel_n 0 0);
+    }
+    cosmosInlet
+    {
+        type            fixedValue;
+        value           uniform (0 $inVel_n 0);
+    }
+    cosmosLeft
+    {
+        type            fixedValue;
+        value           uniform ($inVel_p 0 0);
+    }
+}
+
+// ************************************************************************* //
